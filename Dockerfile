@@ -19,15 +19,16 @@ RUN apt-get update \
    git \
    libpq-dev \
    postgresql-server-dev-$PG_MAJOR \
+   postgresql-common
    make \
    python-pip \
    python2.7 \
-   python2.7-dev \
-   && apt-get autoremove \
-   && apt-get clean
+   python2.7-dev
 
 ENV GYP_CHROMIUM_NO_ACTION=0 \
     DEPOT_TOOLS_WIN_TOOLCHAIN=0
+
+ENV VERBOSE=1
 
 RUN mkdir -p /tmp/build \
   && curl -o /tmp/build/${PLV8_VERSION}.tar.gz -SL "https://github.com/plv8/plv8/archive/$PLV8_VERSION.tar.gz" \
@@ -39,3 +40,6 @@ RUN mkdir -p /tmp/build \
   && make install \
   && strip /usr/lib/postgresql/${PG_MAJOR}/lib/plv8.so \
   && rm -rf /tmp/build /var/lib/apt/lists/*
+
+RUN apt-get autoremove \
+  && apt-get clean
