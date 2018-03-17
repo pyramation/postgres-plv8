@@ -18,7 +18,7 @@ RUN buildDependencies="build-essential \
   && echo ${PLV8_SHASUM} | sha256sum -c \
   && tar -xzf /tmp/build/${PLV8_VERSION}.tar.gz -C /tmp/build/ \
   && cd /tmp/build/plv8-${PLV8_VERSION#?} \
-  && make static \
+  && make \
   && make install \
   && strip /usr/lib/postgresql/${PG_MAJOR}/lib/plv8.so \
   && cd / \
