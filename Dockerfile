@@ -1,4 +1,4 @@
-FROM postgres:10
+FROM postgres:10.3
 
 # credit and thanks to clkao/postgres-plv8:9.6
 
@@ -16,7 +16,7 @@ RUN apt-get update \
    gcc \
    git \
    libpq-dev \
-   postgresql-server-dev-$PG_MAJOR" \
+   postgresql-server-dev-$PG_MAJOR \
    make \
    python-pip \
    python2.7 \
