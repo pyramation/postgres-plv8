@@ -1,20 +1,28 @@
 FROM postgres:10
 
+# credit and thanks to clkao/postgres-plv8:9.6
+
 MAINTAINER Dan Lynch <pyramation@gmail.com>
 
 ENV PLV8_VERSION=v2.3.0 \
     PLV8_SHASUM="5b46f1c036076e57bad18929919648fffa084cdb79a14710879eac3aa40ba091  v2.3.0.tar.gz"
 
-RUN buildDependencies="build-essential \
-    ca-certificates \
-    curl \
-    git-core \
-    postgresql-server-dev-$PG_MAJOR" \
-    python-dev \
-    python-pip \
-    python-virtualenv \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends ${buildDependencies}
+RUN apt-get update \
+   && apt-get upgrade -y \
+   && apt-get install -y \
+   build-essential \
+   ca-certificates \
+   curl \
+   gcc \
+   git \
+   libpq-dev \
+   postgresql-server-dev-$PG_MAJOR" \
+   make \
+   python-pip \
+   python2.7 \
+   python2.7-dev \
+   && apt-get autoremove \
+   && apt-get clean
 
 RUN mkdir -p /tmp/build \
   && curl -o /tmp/build/${PLV8_VERSION}.tar.gz -SL "https://github.com/plv8/plv8/archive/$PLV8_VERSION.tar.gz" \
@@ -25,8 +33,4 @@ RUN mkdir -p /tmp/build \
   && make \
   && make install \
   && strip /usr/lib/postgresql/${PG_MAJOR}/lib/plv8.so \
-  && cd / \
-  && apt-get clean \
-  && apt-get remove -y  ${buildDependencies} \
-  && apt-get autoremove -y \
   && rm -rf /tmp/build /var/lib/apt/lists/*
