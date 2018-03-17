@@ -24,6 +24,8 @@ RUN apt-get update \
    && apt-get autoremove \
    && apt-get clean
 
+ENV GYP_CHROMIUM_NO_ACTION=0
+
 RUN mkdir -p /tmp/build \
   && curl -o /tmp/build/${PLV8_VERSION}.tar.gz -SL "https://github.com/plv8/plv8/archive/$PLV8_VERSION.tar.gz" \
   && cd /tmp/build \
