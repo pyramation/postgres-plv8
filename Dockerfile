@@ -10,6 +10,7 @@ RUN buildDependencies="build-essential \
     curl \
     git-core \
     postgresql-server-dev-$PG_MAJOR" \
+    python2.7 \
   && apt-get update \
   && apt-get install -y --no-install-recommends ${buildDependencies} \
   && mkdir -p /tmp/build \
