@@ -10,11 +10,13 @@ RUN buildDependencies="build-essential \
     curl \
     git-core \
     postgresql-server-dev-$PG_MAJOR" \
-    python2.7 \
-  && add-apt-repository ppa:fkrull/deadsnakes-python2.7 \
+    python-dev \
+    python-pip \
+    python-virtualenv \
   && apt-get update \
-  && apt-get install -y --no-install-recommends ${buildDependencies} \
-  && mkdir -p /tmp/build \
+  && apt-get install -y --no-install-recommends ${buildDependencies}
+
+RUN mkdir -p /tmp/build \
   && curl -o /tmp/build/${PLV8_VERSION}.tar.gz -SL "https://github.com/plv8/plv8/archive/$PLV8_VERSION.tar.gz" \
   && cd /tmp/build \
   && echo ${PLV8_SHASUM} | sha256sum -c \
