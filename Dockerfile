@@ -19,7 +19,7 @@ RUN apt-get update \
    git \
    libpq-dev \
    postgresql-server-dev-$PG_MAJOR \
-   postgresql-common
+   postgresql-common \
    make \
    python-pip \
    python2.7 \
