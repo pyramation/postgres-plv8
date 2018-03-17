@@ -10,7 +10,8 @@ RUN buildDependencies="build-essential \
     curl \
     git-core \
     postgresql-server-dev-$PG_MAJOR" \
-    python \
+    python2.7 \
+  && add-apt-repository ppa:fkrull/deadsnakes-python2.7
   && apt-get update \
   && apt-get install -y --no-install-recommends ${buildDependencies} \
   && mkdir -p /tmp/build \
