@@ -15,6 +15,7 @@ RUN apt-get update \
    pkg-config \
    curl \
    gcc \
+   g++ \
    git \
    libpq-dev \
    postgresql-server-dev-$PG_MAJOR \
