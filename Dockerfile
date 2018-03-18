@@ -14,6 +14,9 @@ RUN apt-get update \
    make \
    postgresql-common \
    postgresql-server-dev-$PG_MAJOR \
+   python-pip \
+   python2.7 \
+   python2.7-dev \
    sudo
 
 ENV GYP_CHROMIUM_NO_ACTION=0 \
