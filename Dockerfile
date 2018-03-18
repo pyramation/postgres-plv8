@@ -21,7 +21,7 @@ ENV GYP_CHROMIUM_NO_ACTION=0 \
 
 RUN mkdir -p /tmp/build \
   && cd /tmp/build \
-  && git clone https://github.com/pyramation/plv8.git
+  && git clone https://github.com/pyramation/plv8.git \
   && cd plv8 \
   && make \
   && make install \
