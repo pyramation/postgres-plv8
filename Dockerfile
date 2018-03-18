@@ -1,10 +1,6 @@
 FROM postgres:10.3
 
-# credit and thanks to clkao/postgres-plv8:9.6
-
 MAINTAINER Dan Lynch <pyramation@gmail.com>
-
-ENV PLV8_VERSION=v2.3.0
 
 RUN apt-get update \
    && apt-get upgrade -y \
