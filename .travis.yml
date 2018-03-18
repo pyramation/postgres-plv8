@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t pyramation/postgres-plv8 .
+  - travis_wait 60 docker build -t pyramation/postgres-plv8 .
   - docker run -d --name postgres pyramation/postgres-plv8
   - sleep 3
   - while ! docker exec -it postgres pg_isready -U postgres -h 127.0.0.1; do echo "$(date) - waiting for database to start"; sleep 1; done
