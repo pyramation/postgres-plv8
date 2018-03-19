@@ -42,13 +42,3 @@ RUN apt-get autoremove \
 
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 RUN echo LANG=en_US.UTF-8 > /etc/locale.conf && locale-gen
-
-RUN mkdir -p /home/postgres
-RUN echo export PATH=\$PATH:/usr/lib/postgresql/$PG_MAJOR/bin > /home/postgres/.profile
-RUN echo export PGDATA=$PGDATA >> /home/postgres/.profile
-RUN echo echo Hello postgres! >> /home/postgres/.profile
-RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
-ENTRYPOINT ["docker-entrypoint.sh"]
-
-EXPOSE 5432
-CMD ["postgres"]
